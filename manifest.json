@@ -1,0 +1,10 @@
+{
+  "name": "قانون الغضب التفاعلي",
+  "short_name": "قانون الغضب",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff7ef",
+  "theme_color": "#7a4a35",
+  "lang": "ar",
+  "dir": "rtl"
+}

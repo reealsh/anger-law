@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#7a4a35" />
+  <title>قانون الغضب - تفاعلي</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="startModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="startTitle">
+    <form id="startForm" class="modal-card">
+      <h1 id="startTitle">بيانات التقييم</h1>
+      <label>اسم الطفل
+        <input id="childNameInput" type="text" autocomplete="name" placeholder="اكتبي اسم الطفل" required />
+      </label>
+      <label>تاريخ بداية الأسبوع
+        <input id="weekStartInput" type="date" required />
+      </label>
+      <button class="primary" type="submit">ابدأ التقييم</button>
+    </form>
+  </div>
+
+  <main class="app">
+    <section class="toolbar" aria-label="أدوات التحكم">
+      <button id="resetBtn" class="secondary" type="button">أسبوع جديد</button>
+      <button id="pdfBtn" class="primary" type="button">تصدير PDF</button>
+      <button id="editInfoBtn" class="secondary" type="button">تعديل البيانات</button>
+    </section>
+
+    <section class="summary" aria-label="ملخص التقييم">
+      <div>اسم الطفل: <strong id="childNameView">—</strong></div>
+      <div>بداية الأسبوع: <strong id="weekStartView">—</strong></div>
+      <div class="numbers"><span>✓ <strong id="checkCount">0</strong></span><span>✕ <strong id="xCount">0</strong></span><span>النسبة: <strong id="percentView">0%</strong></span></div>
+    </section>
+
+    <section class="sheet-wrap">
+      <div id="sheet" class="sheet" aria-label="ورقة تقييم قانون الغضب التفاعلية">
+        <img id="bg" src="background.jpeg" alt="قانون الغضب" draggable="false" />
+        <div id="cells" class="cells"></div>
+      </div>
+    </section>
+
+    <p class="hint">اضغطي على المربع: ضغطة = ✓، ضغطة ثانية = ✕، ضغطة ثالثة = فارغ. البوكس الفاضي ما يدخل في النسبة.</p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
