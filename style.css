@@ -33,30 +33,46 @@ button{border:0; border-radius:14px; padding:10px 14px; font-weight:800; cursor:
 .modal{position:fixed;inset:0;z-index:100;background:rgba(55,33,23,.55);display:flex;align-items:center;justify-content:center;padding:18px}.modal[hidden]{display:none}.modal-card{width:min(100%,420px);background:white;border-radius:22px;padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px}.modal-card h1{margin:0 0 4px;text-align:center;font-size:24px}.modal-card label{display:flex;flex-direction:column;gap:7px;font-weight:800}.modal-card input{border:1px solid rgba(122,74,53,.25);border-radius:14px;padding:12px;font:inherit;color:var(--brown);background:#fffaf6}
 @media (max-width:700px){.app{padding:8px}.toolbar{top:6px;border-radius:14px;padding:8px}button{font-size:14px;padding:9px 12px}.summary{font-size:14px;border-radius:14px}.sheet{min-width:920px;border-radius:8px}.hint{font-size:13px;padding-inline:8px}}
 @media print{
-  @page{size:A4 landscape;margin:6mm}
-  html,body{width:100%;height:100%;overflow:hidden;background:white;color:#7a4a35}
+  @page{size:A4 landscape;margin:4mm}
+  html,body{width:100%;min-height:100%;overflow:visible;background:white;color:#7a4a35}
   .toolbar,.hint,.modal{display:none!important}
-  .app{padding:0;gap:3mm;min-height:0;display:flex;align-items:center;justify-content:flex-start}
+  .app{
+    padding:0;
+    gap:2mm;
+    min-height:0;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+  }
   .summary{
     box-shadow:none;
     border:1px solid rgba(122,74,53,.25);
-    width:252mm;
-    max-width:252mm;
-    font-size:12px;
-    padding:4px 6px;
-    border-radius:8px;
+    width:258mm;
+    max-width:258mm;
+    font-size:11px;
+    line-height:1.2;
+    padding:3px 6px;
+    border-radius:6px;
     page-break-after:avoid;
     break-after:avoid;
   }
-  .sheet-wrap{width:252mm;max-width:252mm;overflow:visible;padding:0;page-break-before:avoid;break-before:avoid}
+  .sheet-wrap{
+    width:258mm;
+    max-width:258mm;
+    overflow:visible;
+    padding:0;
+    page-break-before:avoid;
+    break-before:avoid;
+  }
   .sheet{
-    width:252mm;
-    max-width:252mm;
+    width:258mm;
+    max-width:258mm;
     box-shadow:none;
     border-radius:0;
-    overflow:hidden;
+    overflow:visible;
     page-break-inside:avoid;
     break-inside:avoid;
   }
-  .cell{border:none;background:transparent;font-size:32px}
+  .sheet img{width:100%;height:auto;display:block}
+  .cell{border:none;background:transparent;font-size:31px}
 }
