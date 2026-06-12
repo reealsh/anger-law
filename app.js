@@ -1,5 +1,6 @@
 const STORAGE_KEY = "anger-law-tracker-v2";
 const META_KEY = "anger-law-meta-v2";
+const CLINIC_WHATSAPP = "966144564421";
 const imgW = 2048;
 const imgH = 1448;
 
@@ -108,7 +109,36 @@ startForm.addEventListener("submit", (e) => {
 });
 
 document.getElementById("editInfoBtn").addEventListener("click", openMetaForm);
-document.getElementById("pdfBtn").addEventListener("click", () => window.print());
+
+function whatsappText(){
+  const checks = states.filter(s => s === 1).length;
+  const xsCount = states.filter(s => s === 2).length;
+  const answered = checks + xsCount;
+  const percent = answered ? Math.round((checks / answered) * 100) : 0;
+  return `السلام عليكم، مرفق تقرير قانون الغضب للطفل: ${meta.childName || "—"}، بداية الأسبوع: ${formatDate(meta.weekStart)}، النسبة: ${percent}%، الصح: ${checks}، الخطأ: ${xsCount}.`;
+}
+
+function openClinicWhatsApp(){
+  const url = `https://wa.me/${CLINIC_WHATSAPP}?text=${encodeURIComponent(whatsappText())}`;
+  window.open(url, "_blank", "noopener");
+}
+
+function sendReportToClinic(){
+  const ok = confirm("بيطلع لك خيار حفظ/طباعة التقرير. اختاري حفظ كـ PDF، وبعدها بتفتح محادثة واتساب العيادة وأرفقي ملف الـ PDF فيها.");
+  if(!ok) return;
+  let opened = false;
+  const openOnce = () => {
+    if(opened) return;
+    opened = true;
+    openClinicWhatsApp();
+    window.removeEventListener("afterprint", openOnce);
+  };
+  window.addEventListener("afterprint", openOnce);
+  window.print();
+  setTimeout(openOnce, 4000);
+}
+
+document.getElementById("pdfBtn").addEventListener("click", sendReportToClinic);
 
 document.getElementById("resetBtn").addEventListener("click", () => {
   if(confirm("تبين تمسحين علامات الأسبوع وتبدين من جديد؟")){
